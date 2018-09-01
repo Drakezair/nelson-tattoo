@@ -1,0 +1,71 @@
+body {
+    background: #effdfa;
+}
+
+.front {
+    background: #1f1f1f;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-family: 'Audiowide', cursive;
+    color: #fff;
+}
+
+.navBar {
+    position: absolute;
+    top: 0;
+    width: 100vw;
+    height: 55px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between
+}
+
+.contactBar {
+    display: flex;
+    justify-content: space-between;
+}
+
+.socialButton {
+    background: none;
+    border: none;
+    margin: 5px;
+    transition: .2s;
+}
+
+.socialButton i {
+    font-size: 25px;
+    margin: 0 !important;
+    color: #f1f1f1;
+    cursor: pointer;
+}
+
+.socialButton:hover {
+    transform: scale(1.4);
+}
+
+.PlaneaTatto {
+    color: #f1f1f1;
+    font-weight: bold;
+    font-size: 20px;
+    background: none;
+    margin: 8px 20px;
+    padding: 5px 20px;
+    border: #f1f1f1 3px solid;
+    border-radius: 50px;
+    transition: .2s;
+}
+
+.PlaneaTatto:hover {
+    background: #f1f1f1;
+    color: #1f1f1f;
+    transform: scale(1.1)
+}
+
+.PlaneaTatto:active {
+    transform: scale(1);
+}
+
