@@ -1,5 +1,5 @@
 body {
-    background: #effdfa;
+    background: #f1f1f1;
 }
 
 .front {
@@ -10,8 +10,24 @@ body {
     justify-content: center;
     align-items: center;
     flex-direction: column;
+}
+
+.scene {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: relative;
+}
+
+.scene h1 {
     font-family: 'Audiowide', cursive;
     color: #fff;
+    position: relative !important;
+}
+
+.logo-img {
+    height: 500px;
 }
 
 .navBar {
@@ -69,3 +85,81 @@ body {
     transform: scale(1);
 }
 
+.gallery {
+    margin: 120px 0;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.g-title {
+    font-family: 'Audiowide', sans-serif;
+    margin: 0 auto 60px;
+    font-size: 30px;
+    color: #fff
+}
+
+.g-grid {
+    width: 90%;
+    margin: 30px auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.f-img {
+  object-fit: cover;
+  border-radius: 8px;
+  height: 300px;
+  margin: 10px;
+}
+
+.f-img:hover {
+    transition: .4s;
+    position: relative;
+    transform: scale(1.6);
+    z-index: 4;
+    box-shadow: 0 0 10px 5px #000
+}
+
+footer {
+    margin: 0;
+    background: #1f1f1f;
+    display: flex;
+    padding: 100px 0;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.fo-title {
+    color: #fff;
+    font-family: 'Audiowide', sans-serif;
+    font-size: 25px;
+    font-weight: lighter;
+}
+
+.fo-title {
+    background: none;
+    border: none;
+    margin: 5px;
+    transition: .2s;
+}
+
+.fo-socialButton {
+    background: none;
+    border: none;
+    margin: 20px;
+    transition: .2s;
+}
+
+.fo-socialButton i {
+    font-size: 60px;
+    margin: 0 !important;
+    color: #f1f1f1;
+    cursor: pointer;
+}
+
+.fo-socialButton:hover {
+    transform: scale(1.4);
+}

@@ -1,0 +1,59 @@
+.nav {
+    position: fixed;
+    top: 0;
+    width: 100vw; 
+    height: 55px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #000;
+    animation: open .5s forwards;
+    z-index: 5;
+}
+
+.contactBarNav {
+    display: flex;
+    justify-content: space-between;
+}
+
+.socialButtonNav {
+    background: none;
+    border: none;
+    margin: 5px;
+    transition: .2s;
+}
+
+.socialButtonNav i {
+    font-size: 25px;
+    margin: 0 !important;
+    color: #f1f1f1;
+    cursor: pointer;
+}
+
+.socialButtonNav:hover {
+    transform: scale(1.4);
+}
+
+
+.navImg {
+    height: 40px;
+}
+
+.navImgContain {
+    height: 50px;
+    width: 180px;
+    background: #fff;
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+@keyframes open {
+    0% {
+        transform: translateY(-55px)
+    }
+    100% {
+        transform: translateY(0px)
+    }
+}
