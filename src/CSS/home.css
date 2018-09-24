@@ -1,165 +1,168 @@
 body {
-    background: #f1f1f1;
+	background: #f1f1f1;
 }
 
 .front {
-    background: #1f1f1f;
-    height: 100vh;
-    width: 100vw;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+	background: 
+	linear-gradient(
+		rgba(27, 27, 27, 0.3),
+		rgba(27, 27, 27, 0.3)
+	),
+	url("../assets/tattos/pexels-photo-194074\ \(1\).jpeg") center center / cover no-repeat;
+	height: 100vh;
+	width: 100vw;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
 }
 
 .scene {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    position: relative;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	position: relative;
 }
 
 .scene h1 {
-    font-family: 'Audiowide', cursive;
-    color: #fff;
-    position: relative !important;
+	font-family: 'Audiowide', cursive;
+	color: #fff;
+	position: relative !important;
 }
 
 .logo-img {
-    height: 500px;
+	height: 300px;
 }
 
 .navBar {
-    position: absolute;
-    top: 0;
-    width: 100vw;
-    height: 55px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between
+	position: absolute;
+	top: 0;
+	width: 90vw;
+	height: 80px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
 }
 
 .contactBar {
-    display: flex;
-    justify-content: space-between;
+	display: flex;
+	justify-content: space-between;
 }
 
 .socialButton {
-    background: none;
-    border: none;
-    margin: 5px;
-    transition: .2s;
+	background: none;
+	border: none;
+	margin: 5px;
+	transition: .2s;
 }
 
 .socialButton i {
-    font-size: 25px;
-    margin: 0 !important;
-    color: #f1f1f1;
-    cursor: pointer;
+	font-size: 25px;
+	margin: 0 !important;
+	color: #f1f1f1;
+	cursor: pointer;
 }
 
 .socialButton:hover {
-    transform: scale(1.4);
+	transform: scale(1.4);
 }
 
 .PlaneaTatto {
-    color: #f1f1f1;
-    font-weight: bold;
-    font-size: 20px;
-    background: none;
-    margin: 8px 20px;
-    padding: 5px 20px;
-    border: #f1f1f1 3px solid;
-    border-radius: 50px;
-    transition: .2s;
+	color: #f1f1f1;
+	font-weight: bold;
+	font-size: 20px;
+	background: none;
+	margin: 8px 20px;
+	padding: 5px 20px;
+	border: #f1f1f1 3px solid;
+	border-radius: 50px;
+	transition: .2s;
+	cursor: pointer;
 }
 
 .PlaneaTatto:hover {
-    background: #f1f1f1;
-    color: #1f1f1f;
-    transform: scale(1.1)
+	background: #f1f1f1;
+	color: #1f1f1f;
+	transform: scale(1.1)
 }
 
 .PlaneaTatto:active {
-    transform: scale(1);
+	transform: scale(1);
 }
 
 .gallery {
-    margin: 120px 0;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
+	margin: 120px 0;
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
 }
 
 .g-title {
-    font-family: 'Audiowide', sans-serif;
-    margin: 0 auto 60px;
-    font-size: 30px;
-    color: #fff
+	font-family: 'Audiowide', sans-serif;
+	margin: 0 auto 60px;
+	font-size: 50px;
+	color: #1d1d1d;
 }
 
 .g-grid {
-    width: 90%;
-    margin: 30px auto;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+	width: 80%;
+	margin: 30px auto;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
 }
 
 .f-img {
   object-fit: cover;
   border-radius: 8px;
   height: 300px;
-  margin: 10px;
+  margin: 30px 10px;
+
+  cursor: pointer;
 }
 
-.f-img:hover {
-    transition: .4s;
-    position: relative;
-    transform: scale(1.6);
-    z-index: 4;
-    box-shadow: 0 0 10px 5px #000
-}
+/* .f-img:hx */
 
 footer {
-    margin: 0;
-    background: #1f1f1f;
-    display: flex;
-    padding: 100px 0;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+	margin: 0;
+	background: #1f1f1f;
+	display: flex;
+	padding: 100px 0;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
 }
 
 .fo-title {
-    color: #fff;
-    font-family: 'Audiowide', sans-serif;
-    font-size: 25px;
-    font-weight: lighter;
+	color: #fff;
+	font-family: 'Audiowide', sans-serif;
+	font-size: 25px;
+	font-weight: lighter;
 }
 
 .fo-title {
-    background: none;
-    border: none;
-    margin: 5px;
-    transition: .2s;
+	background: none;
+	border: none;
+	margin: 5px;
+	transition: .2s;
 }
 
 .fo-socialButton {
-    background: none;
-    border: none;
-    margin: 20px;
-    transition: .2s;
+	background: none;
+	border: none;
+	margin: 20px;
+	transition: .2s;
 }
 
 .fo-socialButton i {
-    font-size: 60px;
-    margin: 0 !important;
-    color: #f1f1f1;
-    cursor: pointer;
+	font-size: 60px;
+	margin: 0 !important;
+	color: #f1f1f1;
+	cursor: pointer;
 }
 
 .fo-socialButton:hover {
-    transform: scale(1.4);
+	transform: scale(1.4);
 }

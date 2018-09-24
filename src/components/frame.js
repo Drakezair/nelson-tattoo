@@ -2,11 +2,11 @@ import React, {Component} from 'react';
 
 class Frame extends Component{
 
-    render(){
-        return(
-                <img src={this.props.src} alt="" className='f-img' />
-        )
-    }
+	render(){
+		return(
+			<img src={this.props.src} alt="" className='f-img' />
+		)
+	}
 
 }
 
