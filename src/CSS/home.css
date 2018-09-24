@@ -8,7 +8,7 @@ body {
 		rgba(27, 27, 27, 0.3),
 		rgba(27, 27, 27, 0.3)
 	),
-	url("../assets/tattos/pexels-photo-194074\ \(1\).jpeg") center center / cover no-repeat;
+	url("../assets/tattos/hands-1031131_1920.jpg") center center / cover no-repeat;
 	height: 100vh;
 	width: 100vw;
 	width: 100%;
@@ -127,12 +127,78 @@ body {
 
 footer {
 	margin: 0;
-	background: #1f1f1f;
+	background: 
+	linear-gradient(
+		rgba(27, 27, 27, 0.6),
+		rgba(27, 27, 27, 0.6)
+	),
+	url("../assets/tattos/pexels-photo-955938.jpeg") center center / cover no-repeat;
 	display: flex;
 	padding: 100px 0;
 	justify-content: center;
 	align-items: center;
 	flex-direction: column;
+}
+
+.fo-form {
+	display: flex;
+	flex-direction: row;
+}
+
+.fo-form .sf{
+	padding: 0 10px;
+	display: flex;
+	flex-direction: column;
+}
+
+/* ::-webkit-input-placeholder {
+}
+::-moz-placeholder {
+} */
+
+.fo-form input, button {
+	margin: 0 0 20px 0;
+	border: solid 5px #ffffff;
+	border-radius: 44px;
+	padding: 10px;
+	font-size: 15px;
+	background: transparent;
+	color: white;
+}
+
+.fo-form textarea:focus, input:focus{
+	outline: none;
+}
+
+.fo-form input::-webkit-input-placeholder {
+	color: white;
+}
+
+.fo-form button {
+	font-size: 20px;
+}
+
+.fo-form button:hover {
+	cursor: pointer;
+	background-color: #fff;
+	color: #1d1d1d;
+}
+
+.fo-form textarea {
+	border: solid 5px #ffffff;
+	border-radius: 40px;
+	padding: 15px;
+	font-size: 15px;
+	background: transparent;
+	color: white;
+}
+
+/* .fo-form textarea:enabled {
+	border: solid 1px #f04400;
+} */
+
+.fo-form textarea::-webkit-input-placeholder {
+	color: white;
 }
 
 .fo-title {
@@ -165,4 +231,18 @@ footer {
 
 .fo-socialButton:hover {
 	transform: scale(1.4);
+}
+
+.fo-name {
+	text-align: center;
+	background-color: black;
+	color: #fff;
+	padding: 20px;
+}
+
+
+@media screen and (max-width: 600px){
+	.fo-form {
+		flex-direction: column;
+	}
 }

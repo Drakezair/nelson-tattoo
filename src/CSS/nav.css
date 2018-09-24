@@ -60,8 +60,11 @@
 
 @media screen and (max-width: 600px){
 	.PlaneaTatto {
-		font-size: 18px;
+		font-size: 15px;
 		margin: none;
-		padding: 8px;
+		padding: 6px;
+	}
+	.fo-socialButton{
+		margin: 8px;
 	}
 }

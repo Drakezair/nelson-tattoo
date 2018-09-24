@@ -81,6 +81,7 @@ class Home extends Component {
 					</div>
 				</div>
 				<footer>
+
 					<p className='fo-title' >Contactame por:</p>
 					<div className="f-solcialContain">
 
@@ -101,7 +102,36 @@ class Home extends Component {
 							</a>
 					
 					</div>
+
+					<p className='fo-title' >Dejame un correo:</p>
+
+					<br/>
+					<form className="fo-form" action="" method="post">
+						
+						<div className="sr">
+							<textarea name="desc" id="" cols="30" rows="13"
+							placeholder="Dí algo por aquí"
+							></textarea>
+						</div>
+
+						<div className="sf">
+							<input type="text" name="nombre" id="nombre"
+							placeholder="nombre" />
+							<input type="email" name="correo" id="correo"
+							placeholder="correo" />
+							<input type="text" name="asunto" id="asunto"
+							placeholder="asunto" />
+							<button type="submit">Enviar</button>
+						</div>
+
+					
+					</form>
+
+
 				</footer>
+				<div className="fo-name">
+					Rusinsky Tattoo
+				</div>
 			</div>
 		);
 	}
