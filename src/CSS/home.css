@@ -179,6 +179,8 @@ footer {
 }
 
 .fo-form button:hover {
+	/* font-size: 25px; */
+	font-weight: bold;
 	cursor: pointer;
 	background-color: #fff;
 	color: #1d1d1d;

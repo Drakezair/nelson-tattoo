@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
 import Parallax from 'parallax-js';
 import firebase from "firebase";
-import '../CSS/home.css';
+// import Email from "../smtp";
 
+import '../CSS/home.css';
 
 //Components
 import Frame from '../components/frame';
@@ -12,15 +13,21 @@ import Nav from '../components/nav';
 const Data = [{img: require('../assets/tattos/1.jpg')},{img: require('../assets/tattos/2.jpg')},{img: require('../assets/tattos/3.jpeg')},{img: require('../assets/tattos/4.jpeg')},{img: require('../assets/tattos/5.jpeg')},{img: require('../assets/tattos/6.jpeg')},{img: require('../assets/tattos/7.jpeg')},{img: require('../assets/tattos/8.jpeg')},{img: require('../assets/tattos/9.jpeg')},{img: require('../assets/tattos/10.jpeg')},{img: require('../assets/tattos/11.jpeg')},{img: require('../assets/tattos/12.jpeg')},{img: require('../assets/tattos/13.jpeg')},{img: require('../assets/tattos/14.jpeg')},{img: require('../assets/tattos/15.jpeg')},{img: require('../assets/tattos/16.jpeg')},{img: require('../assets/tattos/17.jpeg')},{img: require('../assets/tattos/18.jpeg')},{img: require('../assets/tattos/19.jpeg')},{img: require('../assets/tattos/20.jpeg')},{img: require('../assets/tattos/21.jpeg')},{img: require('../assets/tattos/22.jpeg')},{img: require('../assets/tattos/23.jpeg')},{img: require('../assets/tattos/24.jpeg')},{img: require('../assets/tattos/25.jpeg')},{img: require('../assets/tattos/26.jpeg')},{img: require('../assets/tattos/27.jpeg')},{img: require('../assets/tattos/28.jpeg')},{img: require('../assets/tattos/29.jpeg')},{img: require('../assets/tattos/30.jpeg')},{img: require('../assets/tattos/31.jpeg')},{img: require('../assets/tattos/32.jpeg')},{img: require('../assets/tattos/33.jpeg')},{img: require('../assets/tattos/34.jpeg')},{img: require('../assets/tattos/35.jpeg')},{img: require('../assets/tattos/36.jpeg')},{img: require('../assets/tattos/37.jpeg')},{img: require('../assets/tattos/38.jpeg')},{img: require('../assets/tattos/39.jpeg')},{img: require('../assets/tattos/40.jpeg')},{img: require('../assets/tattos/41.jpeg')},{img: require('../assets/tattos/42.jpeg')},{img: require('../assets/tattos/43.jpeg')}
 ]
 
+
 class Home extends Component {
 
 	state={
 		nav: false,
-		name: "Simom",
+		name: "",
+		email: "",
+		asunto: "",
+		desc: "",
+		phone: "",
 	}
 	
 	componentDidMount()
 	{
+		console.log(window.Email)
 		// this.readData();
 
 		//PARALLAX
@@ -41,7 +48,62 @@ class Home extends Component {
 		})
 	}
 
-// readData = () => {var database = firebase.database().ref();database.on("value", snapshot => {var name = snapshot.val().nameconsole.log(name)this.setState({name: name,})});}
+	handleChange = (event) => {
+    const target = event.target;
+    const value = target.type === 'checkbox' ? target.checked : target.value;
+    const name = target.name;
+		
+		this.setState({
+			[name]: value
+		});
+	}
+
+	viewForm = (event) => {
+		event.preventDefault();
+		alert(`
+		${this.state.desc},
+		${this.state.name},
+		${this.state.phone},
+		${this.state.email},
+		${this.state.asunto},
+		`);
+
+	}
+
+	sendMail = () => {
+		// var myEmail = "snsimonescobar@gmail.com" 
+		// var link = `mailto:${this.state.email}`
+		// 					// + `?cc=${}`
+		// 					+ "?from=" + escape(`${myEmail}`)
+		// 					+ "&subject=" + escape(`${this.state.asunto}`)
+		// 					+ "&body=" + escape(`${this.state.desc}`)
+		// ;
+		// window.location.href = link;
+
+
+		// var template_params = {
+		// 	desc: this.state.desc,
+		// 	name: this.state.name,
+		// 	phone: this.state.phone,
+		// 	asunto: this.state.asunto,
+		// 	email: this.state.email,
+		// }
+		
+		// var service_id = "gmail";
+		// var template_id = "nelson_tattoo";
+
+		// window.emailjs.send(service_id, template_id, template_params, 'user_EVcJ5zcUWEVqBVD57YumL')
+		// .then(
+		// 	(res) => {
+		// 		console.log("Success", res.status, res.text)
+		// 	},
+		// 	(err) => console.log("Failed", err)
+		// )
+
+		alert("Enviado")
+	}
+
+// readData = () => {var database = firebase.database().ref();database.on("value", snapshot => {var name = snapshot.val().name;console.log(name);this.setState({name: name,})});}
 
 	render(){
 		return(
@@ -106,22 +168,43 @@ class Home extends Component {
 					<p className='fo-title' >Dejame un correo:</p>
 
 					<br/>
-					<form className="fo-form" action="" method="post">
+					<form className="fo-form" id="ContactForm" method="POST"
+					onSubmit={this.viewForm} >
 						
 						<div className="sr">
 							<textarea name="desc" id="" cols="30" rows="13"
 							placeholder="Dí algo por aquí"
+							value={this.state.desc}
+							onChange={this.handleChange}
 							></textarea>
 						</div>
 
 						<div className="sf">
-							<input type="text" name="nombre" id="nombre"
-							placeholder="nombre" />
-							<input type="email" name="correo" id="correo"
-							placeholder="correo" />
+							<input type="text" name="name" id="nombre"
+							placeholder="nombre" 
+							value={this.state.name}
+							onChange={this.handleChange}
+							/>
+
+							<input type="tel" name="phone" id="phone"
+							placeholder="teléfono" 
+							value={this.state.phone}
+							onChange={this.handleChange}
+							/>
+							
+							<input type="email" name="email" id="correo"
+							placeholder="correo" 
+							value={this.state.email}
+							onChange={this.handleChange}
+							/>
+							
 							<input type="text" name="asunto" id="asunto"
-							placeholder="asunto" />
-							<button type="submit">Enviar</button>
+							placeholder="asunto" 
+							value={this.state.asunto}
+							onChange={this.handleChange}
+							/>
+
+							<button type="submit" onClick={this.sendMail}>Enviar</button>
 						</div>
 
 					

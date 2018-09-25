@@ -9,6 +9,8 @@
 # production
 /build
 
+/__MACOSX
+
 # misc
 .DS_Store
 .env.local
