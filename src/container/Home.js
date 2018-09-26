@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import Parallax from 'parallax-js';
 import firebase from "firebase";
-// import Email from "../smtp";
 
 import '../CSS/home.css';
 
@@ -27,7 +26,6 @@ class Home extends Component {
 	
 	componentDidMount()
 	{
-		console.log(window.Email)
 		// this.readData();
 
 		//PARALLAX
@@ -58,49 +56,36 @@ class Home extends Component {
 		});
 	}
 
-	viewForm = (event) => {
+	sendForm = (event) => {
 		event.preventDefault();
-		alert(`
-		${this.state.desc},
-		${this.state.name},
-		${this.state.phone},
-		${this.state.email},
-		${this.state.asunto},
-		`);
-
 	}
 
-	sendMail = () => {
-		// var myEmail = "snsimonescobar@gmail.com" 
-		// var link = `mailto:${this.state.email}`
-		// 					// + `?cc=${}`
-		// 					+ "?from=" + escape(`${myEmail}`)
-		// 					+ "&subject=" + escape(`${this.state.asunto}`)
-		// 					+ "&body=" + escape(`${this.state.desc}`)
-		// ;
-		// window.location.href = link;
+	sendMail = () => { 
+		// var myEmail = "snsimonescobar@gmail.com"  // var link = `mailto:${this.state.email}` // 					+ `?cc=${}` // 					+ "?from=" + escape(`${myEmail}`) // 					+ "&subject=" + escape(`${this.state.asunto}`) // 					+ "&body=" + escape(`${this.state.desc}`) // ; // window.location.href = link;
 
-
-		// var template_params = {
-		// 	desc: this.state.desc,
-		// 	name: this.state.name,
-		// 	phone: this.state.phone,
-		// 	asunto: this.state.asunto,
-		// 	email: this.state.email,
-		// }
+		var template_params = {
+			desc: this.state.desc,
+			name: this.state.name,
+			phone: this.state.phone,
+			asunto: this.state.asunto,
+			email: this.state.email,
+		}
 		
-		// var service_id = "gmail";
-		// var template_id = "nelson_tattoo";
+		var service_id = "gmail";
+		var template_id = "nelson_tattoo";
 
-		// window.emailjs.send(service_id, template_id, template_params, 'user_EVcJ5zcUWEVqBVD57YumL')
-		// .then(
-		// 	(res) => {
-		// 		console.log("Success", res.status, res.text)
-		// 	},
-		// 	(err) => console.log("Failed", err)
-		// )
+		window.emailjs.send(service_id, template_id, template_params, 'user_EVcJ5zcUWEVqBVD57YumL')
+		.then(
+			(res) => {
+				console.log("Success", res.status, res.text)
+			},
+			(err) => { 
+				alert("Ha ocurrido un error, por favor revise su conexión o intente de nuevo.")
+				console.log("Failed", err)}
+		)
 
 		alert("Enviado")
+		this.setState({name: "",desc: "",phone: "",asunto: "",})
 	}
 
 // readData = () => {var database = firebase.database().ref();database.on("value", snapshot => {var name = snapshot.val().name;console.log(name);this.setState({name: name,})});}
@@ -168,8 +153,7 @@ class Home extends Component {
 					<p className='fo-title' >Dejame un correo:</p>
 
 					<br/>
-					<form className="fo-form" id="ContactForm" method="POST"
-					onSubmit={this.viewForm} >
+					<form className="fo-form" id="ContactForm" method="POST" name="ContactForm" onSubmit={this.sendForm} >
 						
 						<div className="sr">
 							<textarea name="desc" id="" cols="30" rows="13"
@@ -180,33 +164,12 @@ class Home extends Component {
 						</div>
 
 						<div className="sf">
-							<input type="text" name="name" id="nombre"
-							placeholder="nombre" 
-							value={this.state.name}
-							onChange={this.handleChange}
-							/>
-
-							<input type="tel" name="phone" id="phone"
-							placeholder="teléfono" 
-							value={this.state.phone}
-							onChange={this.handleChange}
-							/>
-							
-							<input type="email" name="email" id="correo"
-							placeholder="correo" 
-							value={this.state.email}
-							onChange={this.handleChange}
-							/>
-							
-							<input type="text" name="asunto" id="asunto"
-							placeholder="asunto" 
-							value={this.state.asunto}
-							onChange={this.handleChange}
-							/>
-
+							<input type="text" name="name" id="nombre" placeholder="nombre" value={this.state.name} onChange={this.handleChange}/>
+							<input type="tel" name="phone" id="phone" placeholder="teléfono" value={this.state.phone} onChange={this.handleChange}/>							
+							{/* <input type="email" name="email" id="correo" placeholder="correo" value={this.state.email} onChange={this.handleChange}/>							 */}
+							<input type="text" name="asunto" id="asunto" placeholder="asunto" value={this.state.asunto} onChange={this.handleChange}/>
 							<button type="submit" onClick={this.sendMail}>Enviar</button>
 						</div>
-
 					
 					</form>
 
