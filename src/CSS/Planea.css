@@ -1,0 +1,32 @@
+.planea-tattoo{
+	background-color: #333333;
+	height: 95vh;
+	
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.planea-tattoo h1{
+	font-family: 'Audiowide', cursive;
+	color: #fff;
+	position: relative !important;
+}
+
+.btns{
+	padding: 10px;
+	display: flex;
+	flex-direction: column;
+}
+
+.planea-tattoo button{
+	cursor: pointer;
+	margin: 10px;
+	font-size: 35px;
+	padding: 12px;
+}
+
+.planea-tattoo button:focus{
+	outline: none;
+}

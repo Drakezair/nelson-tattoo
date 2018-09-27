@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import Parallax from 'parallax-js';
-import firebase from "firebase";
 
 import '../CSS/home.css';
 
@@ -44,6 +43,7 @@ class Home extends Component {
 				this.setState({nav:false})
 			}
 		})
+		
 	}
 
 	handleChange = (event) => {

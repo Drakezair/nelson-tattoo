@@ -4,6 +4,9 @@ import firebase from "firebase";
 
 import Home from './container/Home';
 import Planea from './container/Planea';
+import Cita from './container/Cita';
+
+import { calendarFormat } from 'moment';
 
 
 // Initialize Firebase
@@ -24,6 +27,7 @@ class App extends Component {
         <Switch>
           <Route exact path='/' component={Home} />
           <Route path='/planea' component={Planea} />
+          <Route path='/cita' component={Cita} />
         </Switch>
       </Router>
     );

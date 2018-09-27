@@ -133,7 +133,7 @@ footer {
 		rgba(27, 27, 27, 0.6)
 	),
 	url("../assets/tattos/pexels-photo-955938.jpeg") center center / cover no-repeat;
-	display: flex;
+	display: flex !important;
 	padding: 100px 0;
 	justify-content: center;
 	align-items: center;

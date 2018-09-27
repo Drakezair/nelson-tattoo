@@ -1,0 +1,46 @@
+.cita-tattoo{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.rbc-calendar{
+	margin: 0 10%;
+}
+
+.rbc-toolbat {
+	flex-direction: column-reverse;
+}
+
+.rbc-time-view{
+	overflow-x: hidden;
+  height: 80vh;
+}
+
+
+.rbc-month-view{
+	background-color: #333333 !important;
+	color: white;
+}
+
+.rbc-date-cell > a, .rbc-date-cell > a:active, .rbc-date-cell > a:visited{
+	color: #ffffff;
+}
+
+.rbc-off-range-bg {
+	background: #7b7b7b;
+}
+
+.rbc-day-bg + .rbc-day-bg {
+	border-left: 1px solid #fff !important;
+}
+
+.rbc-today {
+	background-color: #0e0e0e !important;
+}
+
+@media screen and (min-width: 992px){
+	.rbc-calendar{
+		margin: 0 20%;
+	}
+}
