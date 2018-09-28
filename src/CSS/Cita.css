@@ -2,21 +2,36 @@
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
+	text-align: center;
+}
+
+
+.btnBack{
+	color: #333333;
 }
 
 .rbc-calendar{
 	margin: 0 10%;
+	padding: 10px 0;
+	padding-bottom: 70px;
 }
 
-.rbc-toolbat {
+.rbc-toolbar{
 	flex-direction: column-reverse;
+}
+
+.rbc-toolbar .rbc-toolbar-label{
+	padding: 15px 0 !important;
+	font-size: 27px;
 }
 
 .rbc-time-view{
 	overflow-x: hidden;
-  height: 80vh;
+	height: 80vh;
+	background-color: #333333 !important;
+	color: white;
+	border: 1px solid #fff;
 }
-
 
 .rbc-month-view{
 	background-color: #333333 !important;

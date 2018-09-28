@@ -11,6 +11,18 @@
 	z-index: 5;
 }
 
+button.PlaneaTatto a{
+	color: #fff;
+}
+
+button.PlaneaTatto a:hover{
+	color: #000 !important;
+}
+
+button.PlaneaTatto:hover{
+	color: #000 !important;
+}
+
 .contactBarNav {
 	display: flex;
 	justify-content: space-evenly;

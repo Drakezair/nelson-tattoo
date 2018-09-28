@@ -25,23 +25,21 @@ class Home extends Component {
 	
 	componentDidMount()
 	{
-		// this.readData();
-
 		//PARALLAX
 		var scene = document.getElementById('scene');
 		var parallaxInstance = new Parallax(scene);
 
 
 		//LISTENER
-		window.addEventListener('scroll',()=>{
-			let frontHeight = this.refs.front.scrollHeight;
-			let wind = window.scrollY;
-			if(wind > frontHeight)
-			{
+		window.addEventListener("scroll", ()=>{
+			// var frontHeight = this.refs.front.scrollHeight;
+			var wind = window.scrollY;
+	
+			if(wind > 666)
 				this.setState({nav: true})
-			}else {
+			else 
 				this.setState({nav:false})
-			}
+			
 		})
 		
 	}
@@ -61,7 +59,6 @@ class Home extends Component {
 	}
 
 	sendMail = () => { 
-		// var myEmail = "snsimonescobar@gmail.com"  // var link = `mailto:${this.state.email}` // 					+ `?cc=${}` // 					+ "?from=" + escape(`${myEmail}`) // 					+ "&subject=" + escape(`${this.state.asunto}`) // 					+ "&body=" + escape(`${this.state.desc}`) // ; // window.location.href = link;
 
 		var template_params = {
 			desc: this.state.desc,
@@ -88,8 +85,6 @@ class Home extends Component {
 		this.setState({name: "",desc: "",phone: "",asunto: "",})
 	}
 
-// readData = () => {var database = firebase.database().ref();database.on("value", snapshot => {var name = snapshot.val().name;console.log(name);this.setState({name: name,})});}
-
 	render(){
 		return(
 			<div>
@@ -97,7 +92,7 @@ class Home extends Component {
 					this.state.nav ? <Nav /> : null
 				}
 				
-				<div className='front' ref='front' >
+				<div className='front' ref='front'>
 					
 					<header className='navBar' >
 						<div className="contactBar">
@@ -106,7 +101,7 @@ class Home extends Component {
 							<button className="socialButton" id="socialButton"><i className="fab fa-instagram"></i></button>
 							<button className="socialButton" id="socialButton"><i className="fas fa-envelope"></i></button>
 						</div>
-						<button className='PlaneaTatto' onClick={()=> this.props.history.push('planea')} >Planea tu tattoo</button>
+						<button className='PlaneaTatto' onClick={() => this.props.history.push('planea')} >Planea tu tattoo</button>
 					</header>
 
 					<div className='scene' id="scene">

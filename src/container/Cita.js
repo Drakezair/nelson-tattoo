@@ -2,7 +2,8 @@ import React, {Component} from 'react';
 import moment from "moment";
 import BigCalendar from "react-big-calendar";
 import firebase from "firebase";
-import {Modal, Button, Form, Input} from "semantic-ui-react";
+import {Modal, Button, Form, Input, TextArea} from "semantic-ui-react";
+import {Link} from "react-router-dom";
 
 import 'moment/locale/es'
 
@@ -16,43 +17,58 @@ class Cita extends Component {
 
 	state = {
 		openM: false,
+		openM2: false,
 		events: [
 			{
 				id: 2,
-				title: 'Nadaaa2',
+				title: 'Simon Perez',
 				allDay: false,
+				// Se puede usar este tipo de dato para el calendar
+				
 				// start: "Sat Aug 10 2018 00:00:00 GMT-0400 (Venezuela Time)",
 				// end: "Sat Aug 10 2018 06:30:00 GMT-0400 (Venezuela Time)",
+
 				// start: moment("Sat Aug 10 2018 00:00:00 GMT-0400 (Venezuela Time)").toDate(),
 				// end: new Date(2018, 7, 10, 8, 10, 0),
-				start: moment("9/13/2018, 12:00:00 AM").toDate(),
-				end: moment("9/13/2018, 12:40:00 AM").toDate(),
+				
+				start: moment("9/1/2018, 12:00:00 AM").toDate(),
+				end: moment("9/2/2018, 12:40:00 AM").toDate(),
 			},
 		],
 		timeStart:"", 
 		timeEnd: "",
-
-		fname: "",
-		lname: "",
-		
+		citaR: {},
+		hello: "",
 		formDisable: false,
 	}
 
 	componentDidMount(){
-		this.getList()
+		let lists = firebase.database().ref("Citas");
+		lists.on('child_added', snapshot => {
+			let value = snapshot.val();
+			this.state.events.push({
+				title: value.title,
+				desc: value.desc,
+				start: moment(value.start).toDate(),
+				end: moment(value.end).hour(2).minutes(30).toDate(),
+			})
+
+		})
+
+		console.log(this.state.events)	
 	}
 
 	modelOpen = () => this.setState({ openM: true })
-
+	modelOpenR = () => this.setState({ openM2: true })
 	modelClose = () => this.setState({ openM: false })
+	modelCloseR = () => this.setState({ openM2: false })
 
 	createList = () => {
-		const newList = firebase.database().ref("Citas")
+		const refList = firebase.database().ref("Citas")
 		
-		newList.push({
-			title: document.querySelector("#Titulo").value,
-			nombre: document.querySelector("#Nombre").value,
-			apellido: document.querySelector("#Apellido").value,
+		refList.push({
+			title: `${document.querySelector("#Nombre").value} ${document.querySelector("#Apellido").value}`,
+			desc: document.querySelector("#Desc").value,
 			start: this.state.timeStart,
 			end: this.state.timeEnd,
 		})
@@ -60,23 +76,34 @@ class Cita extends Component {
 		this.modelClose()
 	}
 
+	removeList = (item) => {
+		let db = firebase.database().ref();
+		let list = firebase.database().ref("Citas").orderByKey();
+		list.once("value")
+			.then( snapshot => {
+				snapshot.forEach(cSnapshot => {
+					var pkey = cSnapshot.key;
+					var cval = cSnapshot.val()
+					
+					if (cval.start === item.start && cval.end === item.end){
+						let cdb = db.ref("Citas/"+pkey)
+						console.log(cdb)
+					}
+				})
+			})
+	}
+
 	getList = () => {
-		var lists = firebase.database().ref("Citas");
-
+		let lists = firebase.database().ref("Citas");
 		lists.on('child_added', snapshot => {
-
-			var value = snapshot.val();
-
-			console.log(moment(value.end).minutes(30).toDate())
-
+			let value = snapshot.val();
+			// console.log(moment(value.end).minutes(30).toDate())
 			this.state.events.push({
 				title: value.title,
-				nombre: value.nombre,
-				apellido: value.apellido,
+				desc: value.desc,
 				start: moment(value.start).toDate(),
 				end: moment(value.end).hour(2).minutes(30).toDate(),
 			})
-
 		})
 	}
 
@@ -89,16 +116,11 @@ class Cita extends Component {
 						<h1>Formulario</h1>
 
 						<Form>
-							<Form.Field control={Input} id="Titulo" label="Título de actividad" 
-							placeholder="Escribe aquí"/>
-
 							<Form.Group widths="equal">
 								<Form.Field control={Input} id="Nombre" label="Nombre" placeholder="Nombre"/>
 								<Form.Field control={Input} id="Apellido" label="Apellido" placeholder="Apellido"/>
 							</Form.Group>
 
-							{/* <Form.Checkbox label="¿Todo el día?" defaultChecked /> */}
-							
 							<Form.Group widths="equal">
 								<Form.Field control={Input} disabled={this.state.formDisable} 
 								label="timeStart" placeholder="Inicio" 
@@ -109,15 +131,35 @@ class Cita extends Component {
 								value={this.state.timeEnd}/>
 							</Form.Group>
 
+							<Form.Field control={TextArea} label="Descripción" id="Desc"
+							placeholder="escribe el mensaje que quieres dejar"/>
+							
+							<Form.Checkbox label="¿Todo el día?" defaultChecked />
+
 							<Button onClick={this.createList} color='green'>Guardar</Button>
-							<Button onClick={this.modelClose}>cerrar</Button>
+							<Button onClick={this.modelClose} color='red'>cerrar</Button>
 						
 						</Form>
 
 					</Modal.Content>
 				</Modal>
 
-				<Button onClick={this.getList}>GetList</Button>
+				<Modal open={this.state.openM2}>
+					<Modal.Content>
+						<h1>¿Desea borrar esta cita?</h1>
+						
+						<Button onClick={this.removeList(this.state.citaR)}>Borrar</Button>
+						<Button onClick={this.modelCloseR}>Cancelar</Button>
+
+					</Modal.Content>
+				</Modal>
+
+
+				<Link to="/" className="btnBack">
+					<Button>
+						Volver
+					</Button>
+				</Link>
 
 				<h1>Agendar Cita</h1>
 
@@ -135,16 +177,22 @@ class Cita extends Component {
 					next:">"
 				}}
 
+				/*
+				*/
+				min={moment('10:00am', 'h:mma').toDate()}
+				max={moment('8:00pm', 'h:mma').toDate()}
+
+
 				selectable={true}
 				longPressThreshold={80}
 				culture='es'
 
 				onSelectEvent={cita => {
-					alert(`
-					${cita.title}
-					${cita.start}
-					${cita.end}
-					`)
+					return (
+						this.setState(()=>({ 
+							citaR: cita
+						}), () => console.log(this.state.citaR))
+					)
 				}}
 
 				onSelectSlot={slot => {
@@ -152,8 +200,6 @@ class Cita extends Component {
 						this.modelOpen()
 						
 						this.setState({
-							//fname: document.querySelector("#Nombre").value,
-							//lname: document.querySelector("#Apellido").value,
 							timeStart: slot.start.toLocaleString(),
 							timeEnd: slot.end.toLocaleString()
 						})
