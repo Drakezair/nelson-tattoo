@@ -41,21 +41,9 @@ class Cita extends Component {
 		hello: "",
 		formDisable: false,
 	}
-
+	
 	componentDidMount(){
-		let lists = firebase.database().ref("Citas");
-		lists.on('child_added', snapshot => {
-			let value = snapshot.val();
-			this.state.events.push({
-				title: value.title,
-				desc: value.desc,
-				start: moment(value.start).toDate(),
-				end: moment(value.end).hour(2).minutes(30).toDate(),
-			})
-
-		})
-
-		console.log(this.state.events)	
+		this.getList()
 	}
 
 	modelOpen = () => this.setState({ openM: true })
@@ -63,6 +51,7 @@ class Cita extends Component {
 	modelClose = () => this.setState({ openM: false })
 	modelCloseR = () => this.setState({ openM2: false })
 
+	// Crear list de citas
 	createList = () => {
 		const refList = firebase.database().ref("Citas")
 		
@@ -76,34 +65,46 @@ class Cita extends Component {
 		this.modelClose()
 	}
 
+	// Borrar la list de citas
 	removeList = (item) => {
-		let db = firebase.database().ref();
+		let db = firebase.database();
 		let list = firebase.database().ref("Citas").orderByKey();
 		list.once("value")
 			.then( snapshot => {
 				snapshot.forEach(cSnapshot => {
-					var pkey = cSnapshot.key;
-					var cval = cSnapshot.val()
+					let pkey = cSnapshot.key;
+					let cval = cSnapshot.val()
+
+					let iStart = moment(item.start).format('M/DD/YYYY, hh:mm:ss A');
+					let iEnd = moment(item.end).format('M/DD/YYYY, hh:mm:ss A');
 					
-					if (cval.start === item.start && cval.end === item.end){
-						let cdb = db.ref("Citas/"+pkey)
-						console.log(cdb)
+					if (cval.start == iStart && cval.end == iEnd){
+						let cdb = db.ref("Citas/"+pkey).key
+						db.ref("Citas/"+cdb).remove()
 					}
 				})
 			})
+
+		let listR = firebase.database().ref("Citas");
+		listR.on("child_removed", snapshot => {
+			alert("Se ha eleminado la cita ;-)")
+		})
 	}
 
+	// obtener la list de citas
 	getList = () => {
 		let lists = firebase.database().ref("Citas");
 		lists.on('child_added', snapshot => {
 			let value = snapshot.val();
-			// console.log(moment(value.end).minutes(30).toDate())
+
 			this.state.events.push({
 				title: value.title,
 				desc: value.desc,
 				start: moment(value.start).toDate(),
-				end: moment(value.end).hour(2).minutes(30).toDate(),
+				end: moment(value.end).toDate(),
 			})
+
+			this.forceUpdate()
 		})
 	}
 
@@ -148,7 +149,7 @@ class Cita extends Component {
 					<Modal.Content>
 						<h1>¿Desea borrar esta cita?</h1>
 						
-						<Button onClick={this.removeList(this.state.citaR)}>Borrar</Button>
+						<Button onClick={() => {this.removeList(this.state.citaR)}} color='red'>Borrar</Button>
 						<Button onClick={this.modelCloseR}>Cancelar</Button>
 
 					</Modal.Content>
@@ -191,7 +192,13 @@ class Cita extends Component {
 					return (
 						this.setState(()=>({ 
 							citaR: cita
-						}), () => console.log(this.state.citaR))
+						}), 
+						() => this.modelOpenR(),
+						/* 
+						() => this.removeList(this.state.citaR),
+						() => console.log("Hellooo") 
+						*/
+						)
 					)
 				}}
 
@@ -201,8 +208,12 @@ class Cita extends Component {
 						
 						this.setState({
 							timeStart: slot.start.toLocaleString(),
-							timeEnd: slot.end.toLocaleString()
+							timeEnd: moment(slot.end.toLocaleString())
+								.add(1, "h").add(30, "m")
+								.format('M/DD/YYYY, hh:mm:ss A')
 						})
+
+						console.log(this.state.timeEnd)
 
 					}
 				}}
